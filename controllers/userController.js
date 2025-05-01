@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export function createUser(req,res){
-//testing comment
+
 
   if(req.body.role=="admin"){
     if(req.user!=null){
