@@ -5,6 +5,7 @@ import studentRouter from "./routes/studentRouter.js";
 import productRouter from "./routes/productRoute.js";
 import userRouter from "./routes/userRoute.js";
 import jwt from "jsonwebtoken";
+import orderRouter from "./routes/orderRoute.js";
 
 
 const app = express();
@@ -60,6 +61,8 @@ mongoose.connect("mongodb+srv://admin:123@cluster0.x8moj.mongodb.net/?retryWrite
 app.use("/students",studentRouter);
 app.use("/products",productRouter);
 app.use("/users",userRouter);
+app.use("/orders",orderRouter);
+
 
 
 

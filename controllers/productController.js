@@ -115,3 +115,120 @@ export async function deleteProduct(req,res){
    
 }
 
+
+export async function updateProduct(req,res){
+    if (!isAdmin(req)){
+        res.status(403).json({
+            message:"You are not authorized to update a product"
+        })
+
+        return
+    }
+
+    const productId=req.params.productId
+    const updatingData=req.body
+
+
+    try{
+        
+        await Product.updateOne(
+
+            {productId:productId},
+            updatingData
+
+
+        )
+        res.json({
+            message:"product updated successfully"
+        })
+
+
+    }catch(err){
+        res.status(500).json({
+            message:"internal server error"
+        })
+
+    }
+}
+
+/*
+
+export async function updateProduct(req, res) {
+    if (!isAdmin(req)) {
+        res.status(403).json({
+            message: "You are not authorized to update a product"
+        });
+        return;
+    }
+
+    const productId = req.params.productId;
+    const updatingData = req.body;
+
+    try {
+        const result = await Product.updateOne(
+            { productId: productId },
+            { $set: updatingData }  // Ensures partial updates work
+        );
+
+        if (result.matchedCount === 0) {
+            res.status(404).json({
+                message: "Product not found"
+            });
+        } else if (result.modifiedCount === 0) {
+            res.status(200).json({
+                message: "No changes made to the product"
+            });
+        } else {
+            res.json({
+                message: "Product updated successfully"
+            });
+        }
+
+    } catch (err) {
+        res.status(500).json({
+            message: "Internal server error",
+            error: err
+        });
+    }
+}
+*/
+
+
+
+export async function getProductByID(req,res){
+    const productId=req.params.productId
+    try{
+
+        const product=await Product.findOne(
+            {productId:productId}
+        )
+
+        if(product==null){
+            res.status(404).json({
+                message:"Product not Found"
+            })
+            return
+        }
+
+        if(product.isAvailable){
+            res.json(product)
+        }else{
+            if(!isAdmin(req)){
+                res.status(404).json({
+                    message:"Product not found"
+                })
+                return
+            }else{
+                res.json(product)
+            }
+
+        }
+
+    } catch(err){
+        res.status(500).json({
+            message:"Internal Server Error",
+            error:err
+        })
+
+    }
+}

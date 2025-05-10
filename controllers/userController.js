@@ -74,7 +74,7 @@ export function loginUser(req,res){
                     const token=jwt.sign(
                         {
 
-                            emai:user.emai,
+                            email:user.email,
                             firstName:user.firstName,
                             lastName:user.lastName,
                             role:user.role,
