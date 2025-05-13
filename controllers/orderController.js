@@ -77,7 +77,7 @@ export async function createOrder(req,res) {
                 productInfo:{
                     productId: item.productID,
                     name: item.name,
-                    altNames: item.altNames,
+                    altNames: item.altNames, 
                     description: item.description,
                     images: item.images,
                     lablledPrice: item.labelledPrice,  // Fixed typo: 'lablledPrice' → 'labelledPrice'
