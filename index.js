@@ -60,10 +60,10 @@ mongoose.connect("mongodb+srv://admin:123@cluster0.x8moj.mongodb.net/?retryWrite
 )
 
 
-app.use("/students",studentRouter);
-app.use("/products",productRouter);
-app.use("/users",userRouter);
-app.use("/orders",orderRouter);
+app.use("/api/students",studentRouter);
+app.use("/api/products",productRouter);
+app.use("/api/users",userRouter);
+app.use("/api/orders",orderRouter);
 
 
 
