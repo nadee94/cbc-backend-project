@@ -97,7 +97,7 @@ export async function deleteProduct(req,res){
     }
     try{
 
-        await Product.deleteOne({productId:req.params.productId})
+        await Product.deleteOne({productID:req.params.productID})
 
         res.json({
             message:"product deleted  successfully"
@@ -125,7 +125,7 @@ export async function updateProduct(req,res){
         return
     }
 
-    const productId=req.params.productId
+    const productID=req.params.productID
     const updatingData=req.body
 
 
@@ -133,7 +133,7 @@ export async function updateProduct(req,res){
         
         await Product.updateOne(
 
-            {productId:productId},
+            {productID:productID},
             updatingData
 
 
